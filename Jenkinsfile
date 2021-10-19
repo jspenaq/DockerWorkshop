@@ -28,9 +28,9 @@ pipeline {
       }
     }
     // stage('Deploy') {
-    //   steps {
-        // sh 'docker run'
-    //   }
+      // steps {
+      //   // sh 'docker run'
+      // }
     // }
   }
 
