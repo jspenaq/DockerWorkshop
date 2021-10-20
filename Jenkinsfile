@@ -6,12 +6,6 @@ pipeline {
 	}
 
   stages {
-    // stage('Prepare') {
-    //   steps {
-    //     sh 'npm --version'
-    //     sh 'npm ci'
-    //   }
-    // }
     stage('Build') {
       steps {
         sh 'docker build -t jspenaq/minecraftserver:latest .'
