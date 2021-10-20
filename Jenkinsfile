@@ -27,11 +27,11 @@ pipeline {
         sh 'docker push jspenaq/minecraftserver:latest'
       }
     }
-    // stage('Deploy') {
-      // steps {
-      //   // sh 'docker run'
-      // }
-    // }
+    stage('Deploy') {
+      steps {
+        sh 'docker run -d -p 25565:25565 --name minecraft minecraftserver:latest'
+      }
+    }
   }
 
   post {
