@@ -29,7 +29,8 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh 'docker run -d -p 25565:25565 --name minecraft minecraftserver:latest'
+        sh 'docker image ls'
+        sh 'docker run -d -p 25565:25565 jspenaq/minecraftserver:latest'
       }
     }
   }
