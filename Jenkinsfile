@@ -13,7 +13,7 @@ pipeline {
     }
     stage('Analyze') {
       steps {
-        // sh 'cd /home/ubuntu/docker-bench-security/'
+        //  sh 'cd /home/ubuntu/docker-bench-security/'
         sh 'sudo sh docker-bench-security.sh'
       }
     }
