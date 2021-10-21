@@ -11,6 +11,12 @@ pipeline {
         sh 'docker build -t jspenaq/minecraftserver:latest .'
       }
     }
+    stage('Analyze') {
+      steps {
+        sh 'cd docker-bench-security/'
+        sh 'sudo sh docker-bench-security.sh'
+      }
+    }
     stage('Login') {
       steps {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
@@ -23,7 +29,6 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh 'docker image ls' 
         sh 'docker run -d -p 25565:25565 jspenaq/minecraftserver:latest'
       }
     }
