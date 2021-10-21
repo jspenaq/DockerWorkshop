@@ -11,14 +11,6 @@ pipeline {
         sh 'docker build -t jspenaq/minecraftserver:latest .'
       }
     }
-    stage('Analyze') {
-      steps {
-        sh 'git clone https://github.com/docker/docker-bench-security.git'
-        sh 'cd docker-bench-security'
-        sh 'docker-bench-security.sh'
-        sh 'cd .. && rm -fr docker-bench-security' 
-      }
-    }
     stage('Login') {
       steps {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
@@ -38,6 +30,7 @@ pipeline {
 
   post {
 		always {
+			sh 'docker system prune -f'
 			sh 'docker logout'
 		}
 	}
