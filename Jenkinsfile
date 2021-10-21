@@ -13,8 +13,10 @@ pipeline {
     }
     stage('Analyze') {
       steps {
-        sh 'cd /home/ubuntu/docker-bench-security/'
+        sh 'git clone https://github.com/docker/docker-bench-security.git'
+        sh 'cd docker-bench-security'
         sh 'sudo sh docker-bench-security.sh'
+        sh 'cd .. && rm -fr docker-bench-security'
       }
     }
     stage('Login') {
